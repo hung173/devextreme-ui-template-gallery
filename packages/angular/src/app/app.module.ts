@@ -22,6 +22,7 @@ import { AnalyticsDashboardModule } from './pages/analytics-dashboard/analytics-
 import { AnalyticsSalesReportModule } from './pages/analytics-sales-report/analytics-sales-report.component';
 import { AnalyticsGeographyModule } from './pages/analytics-geography/analytics-geography.component';
 import { ThemeService } from './services';
+import { OAuthModule, OAuthStorage } from 'angular-oauth2-oidc';
 
 @NgModule({
   declarations: [
@@ -47,8 +48,14 @@ import { ThemeService } from './services';
     AnalyticsGeographyModule,
 
     AppRoutingModule,
+    OAuthModule.forRoot({
+      resourceServer: {
+        allowedUrls: ['http://localhost:9000'],
+        sendAccessToken: true
+      }
+    })
   ],
-  providers: [AuthService, ScreenService, AppInfoService, ThemeService],
+  providers: [AuthService, ScreenService, AppInfoService, ThemeService, {provide:OAuthStorage , useValue : localStorage}],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

@@ -23,6 +23,8 @@ import { AppSignInComponent } from './pages/sign-in-form/sign-in-form.component'
 import { AppSignUpComponent } from './pages/sign-up-form/sign-up-form.component';
 import { AppResetPasswordComponent } from './pages/reset-password-form/reset-password-form.component';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
+import { RedirectComponent } from './services/redirect.service';
+import { LoginOauth2Component } from './services/login_oauth2.service';
 
 const routes: Routes = [
   {
@@ -32,6 +34,11 @@ const routes: Routes = [
       {
         path: 'login',
         component: LoginFormComponent,
+        canActivate: [AuthGuardService],
+      },
+      {
+        path: 'login-oauth2',
+        component: LoginOauth2Component,
         canActivate: [AuthGuardService],
       },
       {
@@ -48,6 +55,11 @@ const routes: Routes = [
         path: 'change-password/:recoveryCode',
         component: ChangePasswordFormComponent,
         canActivate: [AuthGuardService],
+      },
+      {
+        path : 'authorization_code',
+        component: RedirectComponent,
+        canActivate: [AuthGuardService]
       },
       {
         path: '**',
@@ -128,7 +140,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { useHash: true, }),
+    RouterModule.forRoot(routes, { useHash: false, }),
     BrowserModule,
   ],
   providers: [AuthGuardService],

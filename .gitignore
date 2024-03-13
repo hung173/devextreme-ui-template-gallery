@@ -28,3 +28,6 @@ packages/testing/screenshots
 packages/testing/testing
 .env
 swa-cli.config.json
+package-lock.json
+package-lock.json
+packages/angular/.vscode/launch.json

@@ -62,9 +62,9 @@ export class LoginFormComponent implements OnInit {
 
     const result = await this.authService.logIn(email, password);
     this.loading = false;
-    if (!result.isOk) {
-      notify(result.message, 'error', 2000);
-    }
+    // if (!result.isOk) {
+    //   notify(result.message, 'error', 2000);
+    // }
   }
 
   onCreateAccountClick = () => {
